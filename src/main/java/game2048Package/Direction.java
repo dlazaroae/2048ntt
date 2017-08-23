@@ -1,3 +1,5 @@
+package game2048Package;
+
 public enum Direction {
     UP, DOWN, LEFT, RIGHT;
 

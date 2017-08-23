@@ -1,3 +1,5 @@
+import game2048Package.Direction;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,48 +7,61 @@ public class MainGame2048 {
     public static void main(String[] args) {
         int n = 0;
         System.out.println("If you type in a diffrent number than{4, 5, 6, 8} the defult direction will be left.");
-        System.out.println("If you type in a letter the application will crash.");
+        System.out.println("If you type in a letter the application will crash");
         int table[][] = new int[4][4];
         while (true) {
+
+
             if (n == 0) {
                 n = init(n, table);
                 print(table);
             }
             if (gameOver(table)) {
-                System.out.println("Game Over! D:");
+                System.out.println("common.Game Over! D:");
                 break;
             }
+
+
             System.out.println("Number of moves " + n);
             shift(table);
-            if (n > 11) win(table);
             print(table);
+            if (win(table)) {
+                System.out.println("You win!!!! Congrats :D");
+                break;
+            }
+
             addNewValue(table);
             n++;
-//            fillTable(table)
+//     fillTable(table);
         }
     }
+
 
     private static void fillTable(int[][] table) {
         int a = 1;
         for (int i = 0; i <= 3; i++) {
-            for (int j = 0; j <= 3; j++) {
+            for (int j = 0; j <= 2; j++) {
                 table[i][j] = a;
                 a++;
             }
+            table[3][3] = 2048;
 
         }
     }
 
-    private static void win(int[][] table) {
+    private static boolean win(int[][] table) {
         for (int i = 0; i <= 3; i++) {
             for (int j = 0; j <= 3; j++) {
                 if (table[i][j] == 2048) {
-                    System.out.println("You win!!!! Congrats :D");
-                    break;
+
+                    return true;
+
+
                 }
             }
 
         }
+        return false;
     }
 
     private static int[] addRD(int x[]) {
